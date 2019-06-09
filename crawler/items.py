@@ -8,7 +8,9 @@
 import scrapy
 
 
-class CrawlerItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class PostItem(scrapy.Item):
+    title = scrapy.Field()
+    posted_at = scrapy.Field()
+    posted_by_name = scrapy.Field()
+    posted_by_profile_url = scrapy.Field()
+    body = scrapy.Field()
