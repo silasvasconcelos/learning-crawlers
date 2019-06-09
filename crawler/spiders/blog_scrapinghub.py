@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
+from crawler.items import PostItem
 
 
 class BlogScrapinghubSpider(scrapy.Spider):
@@ -18,10 +19,10 @@ class BlogScrapinghubSpider(scrapy.Spider):
             yield response.follow(next_page, self.parse)
 
     def parse_post(self, response):
-        yield {
+        yield PostItem({
             'title': response.css('div.post-page-content div.post-header h1 span::text').get(),
             'posted_at': response.css('div.post-page-content div.post-header div.byline span a::text').get(),
             'posted_by_name': response.css('div.post-page-content div.post-header div.byline span.author a::text').get(),
             'posted_by_profile_url': response.css('div.post-page-content div.post-header div.byline span.author a::attr(href)').get(),
             'body': response.css('div.post-page-content div.post-body span').get(),
-        }
+        })
