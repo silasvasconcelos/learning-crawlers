@@ -22,6 +22,6 @@ class BlogScrapinghubSpider(scrapy.Spider):
             'title': response.css('div.post-page-content div.post-header h1 span::text').get(),
             'posted_at': response.css('div.post-page-content div.post-header div.byline span a::text').get(),
             'posted_by_name': response.css('div.post-page-content div.post-header div.byline span.author a::text').get(),
-            'posted_by_prifile_url': response.css('div.post-page-content div.post-header div.byline span.author a::attr(href)').get(),
+            'posted_by_profile_url': response.css('div.post-page-content div.post-header div.byline span.author a::attr(href)').get(),
             'body': response.css('div.post-page-content div.post-body span').get(),
         }
