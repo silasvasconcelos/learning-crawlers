@@ -9,6 +9,8 @@ import scrapy
 
 
 class PostItem(scrapy.Item):
+    _id = scrapy.Field()
+    url = scrapy.Field()
     title = scrapy.Field()
     posted_at = scrapy.Field()
     posted_by_name = scrapy.Field()
