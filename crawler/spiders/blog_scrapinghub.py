@@ -20,6 +20,7 @@ class BlogScrapinghubSpider(scrapy.Spider):
 
     def parse_post(self, response):
         yield PostItem({
+            'url': response.url,
             'title': response.css('div.post-page-content div.post-header h1 span::text').get(),
             'posted_at': response.css('div.post-page-content div.post-header div.byline span a::text').get(),
             'posted_by_name': response.css('div.post-page-content div.post-header div.byline span.author a::text').get(),
