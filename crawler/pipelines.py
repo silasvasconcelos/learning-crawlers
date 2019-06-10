@@ -5,13 +5,19 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
+from . import settings
+
 from scrapy.exceptions import DropItem
 from pymongo import MongoClient
 
 class MongodbBase(object):
-    mongo_uri = 'mongodb://localhost:27017'
-    mongo_db = 'crawler_blog_scrapinghub'
+    mongo_uri = None
+    mongo_db = None
     mongo_collection_name = 'posts'
+
+    def __init__(self, *args, **kwargs):
+        self.mongo_uri = settings.MONGO_URI
+        self.mongo_db = settings.MONGO_DATABASE
 
     def get_collection(self, collection=None):
         return None if collection is None else self.db[collection]
